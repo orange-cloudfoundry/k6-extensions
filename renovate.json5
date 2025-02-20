@@ -1,0 +1,85 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":disableRateLimiting",
+    ":rebaseStalePrs",
+    "github>orange-cloudfoundry/renovate-presets:default.json5"
+  ],
+
+  "packageRules": [
+    {
+      "description": "@JCL38-ORANGE assignments",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "assignees": [
+        "JCL38-ORANGE"
+      ]
+    }
+  ],
+
+  "regexManagers": [
+    {
+      "description": "XK6_MONGO version in DockerFile",
+      "fileMatch": ["Dockerfile$"],
+      "matchStrings": [
+        "ENV XK6_MONGO_VERSION=\"(?<currentValue>.*)\""
+      ],
+      "depNameTemplate": "GhMartingit/xk6-mongo",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$"
+    },
+    {
+      "description": "XK6_SQL_DRIVER_POSTGRES version in DockerFile",
+      "fileMatch": ["Dockerfile$"],
+      "matchStrings": [
+        "ENV XK6_SQL_DRIVER_POSTGRES_VERSION=\"(?<currentValue>.*)\""
+      ],
+      "depNameTemplate": "grafana/xk6-sql-driver-postgres",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$"
+    },
+    {
+      "description": "XK6_SQL_DRIVER_MYSQL version in DockerFile",
+      "fileMatch": ["Dockerfile$"],
+      "matchStrings": [
+        "ENV XK6_SQL_DRIVER_MYSQL_VERSION=\"(?<currentValue>.*)\""
+      ],
+      "depNameTemplate": "grafana/xk6-sql-driver-mysql",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$"
+    },
+    {
+      "description": "XK6_SQL version in DockerFile",
+      "fileMatch": ["Dockerfile$"],
+      "matchStrings": [
+        "ENV XK6_SQL_VERSION=\"(?<currentValue>.*)\""
+      ],
+      "depNameTemplate": "grafana/xk6-sql",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$"
+    },
+    {
+      "description": "XK6_LOKI version in DockerFile",
+      "fileMatch": ["Dockerfile$"],
+      "matchStrings": [
+        "ENV XK6_LOKI_VERSION=\"(?<currentValue>.*)\""
+      ],
+      "depNameTemplate": "grafana/xk6-loki",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$"
+    },
+    {
+      "description": "XK6_BUILDER version in DockerFile",
+      "fileMatch": ["Dockerfile$"],
+      "matchStrings": [
+        "ENV XK6_BUILDER_VERSION=\"(?<currentValue>.*)\""
+      ],
+      "depNameTemplate": "grafana/xk6",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$"
+    }
+  ]
+
+}
