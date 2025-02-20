@@ -7,7 +7,7 @@ ENV GRAFANA_K6_VERSION="0.56.0" \
     XK6_SQL_DRIVER_MYSQL_VERSION="0.1.0" \
     XK6_SQL_VERSION="1.0.1" \
     XK6_LOKI_VERSION="1.0.0" \
-    XK6_BUILDER_VERSION="0.14.3" \
+    XK6_BUILDER_VERSION="0.14.3"
 
 RUN go install go.k6.io/xk6/cmd/xk6@v${XK6_BUILDER_VERSION}
 RUN xk6 build --output /k6 \
