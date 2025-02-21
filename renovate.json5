@@ -1,12 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base",
-    ":disableRateLimiting",
-    ":rebaseStalePrs",
-    "github>orange-cloudfoundry/renovate-presets:default.json5"
+  extends: [
+    'config:best-practices',
+    ':disableRateLimiting',
   ],
-
+  baseBranches: [
+    // don't run on renovate branches
+    "$default",
+    // See https://docs.renovatebot.com/configuration-options/#basebranches
+    // baseBranches supports Regular Expressions that must begin and end with /
+  ], //See also possible support for multiple base branches, one per K8S minor version https://docs.renovatebot.com/configuration-options/#basebranches
   "packageRules": [
     {
       "description": "@JCL38-ORANGE assignments",
@@ -16,9 +19,18 @@
       "assignees": [
         "JCL38-ORANGE"
       ]
+    },
+    {
+      description: "Add common labels",
+      matchDepNames: ["*"],
+      addLabels: [
+        // See full list of fields available at https://docs.renovatebot.com/templates/#other-available-fields
+        "datasource/{{datasource}}",
+        "depName/{{depNameSanitized}}",
+        "manager/{{manager}}",
+      ]
     }
   ],
-
   "regexManagers": [
     {
       "description": "XK6_MONGO version in DockerFile",
