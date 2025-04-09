@@ -21,5 +21,5 @@ RUN xk6 build --output /k6 \
     --with github.com/grafana/xk6-loki@v${XK6_LOKI_VERSION}
 
 # Use the operator's base image and override the k6 binary
-FROM grafana/k6:0.57.0@sha256:70af91f86cd8e142e0544a4edaf79835a80033f71974b92edd5ac36fd4442a7b
+FROM grafana/k6:0.58.0@sha256:6a4eabc37ea8274aff48804ff1add146b4eda476fdf50ea6e9cdf083a3967616
 COPY --from=builder /k6 /usr/bin/k6
