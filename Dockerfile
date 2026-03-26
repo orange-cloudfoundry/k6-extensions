@@ -9,7 +9,7 @@ ENV XK6_SQL_VERSION="1.0.6"
 ENV XK6_LOKI_VERSION="1.0.1"
 
 # renovate: datasource=github-releases depName=grafana/xk6
-ENV XK6_BUILDER_VERSION="1.3.2"
+ENV XK6_BUILDER_VERSION="1.3.7"
 
 
 RUN go install go.k6.io/xk6/cmd/xk6@v${XK6_BUILDER_VERSION}
