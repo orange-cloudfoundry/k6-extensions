@@ -4,122 +4,122 @@
     'config:best-practices',
     ':disableRateLimiting',
   ],
-  baseBranches: [
-    // don't run on renovate branches
+  baseBranchPatterns: [
     '$default',
-    // See https://docs.renovatebot.com/configuration-options/#basebranches
-    // baseBranches supports Regular Expressions that must begin and end with /
-  ], //See also possible support for multiple base branches, one per K8S minor version https://docs.renovatebot.com/configuration-options/#basebranches
+  ],
   packageRules: [
     {
       description: '@JCL38-ORANGE assignments',
-      matchPackagePatterns: [
-        '*'
-      ],
       assignees: [
-        'JCL38-ORANGE'
-      ]
+        'JCL38-ORANGE',
+      ],
+      matchPackageNames: [
+        '*',
+      ],
     },
     {
       description: 'Add common labels',
-      matchDepNames: ['*'],
+      matchDepNames: [
+        '*',
+      ],
       addLabels: [
-        // See full list of fields available at https://docs.renovatebot.com/templates/#other-available-fields
         'datasource/{{datasource}}',
         'depName/{{depNameSanitized}}',
         'manager/{{manager}}',
-      ]
+      ],
     },
     {
       description: 'Auto-merge patch releases, e.g. from 1.25.1 to 1.25.2',
       matchPackageNames: [
         'golang',
       ],
-      //see https://docs.renovatebot.com/key-concepts/automerge/#automerge-non-major-updates
       matchUpdateTypes: [
         'patch',
         'minor',
       ],
       matchCurrentVersion: '!/-rc/',
       automerge: true,
-      //see https://docs.renovatebot.com/key-concepts/automerge/#absence-of-tests
       ignoreTests: true,
-    }
+    },
   ],
   customManagers: [
     {
       customType: 'regex',
       description: 'XK6_MONGO version in DockerFile',
-      fileMatch: ['Dockerfile$'],
+      managerFilePatterns: [
+        '/Dockerfile$/',
+      ],
       matchStrings: [
-        'ENV XK6_MONGO_VERSION=\"(?<currentValue>.*)\"'
+        'ENV XK6_MONGO_VERSION="(?<currentValue>.*)"',
       ],
       depNameTemplate: 'GhMartingit/xk6-mongo',
       datasourceTemplate: 'github-releases',
       versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$',
     },
     {
+      customType: 'regex',
       description: 'XK6_SQL_DRIVER_POSTGRES version in DockerFile',
-      fileMatch: ['Dockerfile$'],
+      managerFilePatterns: [
+        '/Dockerfile$/',
+      ],
       matchStrings: [
-        'ENV XK6_SQL_DRIVER_POSTGRES_VERSION=\"(?<currentValue>.*)\"'
+        'ENV XK6_SQL_DRIVER_POSTGRES_VERSION="(?<currentValue>.*)"',
       ],
       depNameTemplate: 'grafana/xk6-sql-driver-postgres',
       datasourceTemplate: 'github-releases',
-      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$'
+      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$',
     },
     {
+      customType: 'regex',
       description: 'XK6_SQL_DRIVER_MYSQL version in DockerFile',
-      fileMatch: ['Dockerfile$'],
+      managerFilePatterns: [
+        '/Dockerfile$/',
+      ],
       matchStrings: [
-        'ENV XK6_SQL_DRIVER_MYSQL_VERSION=\"(?<currentValue>.*)\"'
+        'ENV XK6_SQL_DRIVER_MYSQL_VERSION="(?<currentValue>.*)"',
       ],
       depNameTemplate: 'grafana/xk6-sql-driver-mysql',
       datasourceTemplate: 'github-releases',
-      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$'
+      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$',
     },
     {
+      customType: 'regex',
       description: 'XK6_SQL version in DockerFile',
-      fileMatch: ['Dockerfile$'],
+      managerFilePatterns: [
+        '/Dockerfile$/',
+      ],
       matchStrings: [
-        'ENV XK6_SQL_VERSION=\"(?<currentValue>.*)\"'
+        'ENV XK6_SQL_VERSION="(?<currentValue>.*)"',
       ],
       depNameTemplate: 'grafana/xk6-sql',
       datasourceTemplate: 'github-releases',
-      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$'
+      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$',
     },
     {
+      customType: 'regex',
       description: 'XK6_LOKI version in DockerFile',
-      fileMatch: ['Dockerfile$'],
+      managerFilePatterns: [
+        '/Dockerfile$/',
+      ],
       matchStrings: [
-        'ENV XK6_LOKI_VERSION=\"(?<currentValue>.*)\"'
+        'ENV XK6_LOKI_VERSION="(?<currentValue>.*)"',
       ],
       depNameTemplate: 'grafana/xk6-loki',
       datasourceTemplate: 'github-releases',
-      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$'
+      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$',
     },
     {
+      customType: 'regex',
       description: 'XK6_BUILDER version in DockerFile',
-      fileMatch: ['Dockerfile$'],
+      managerFilePatterns: [
+        '/Dockerfile$/',
+      ],
       matchStrings: [
-        'ENV XK6_BUILDER_VERSION=\"(?<currentValue>.*)\"'
+        'ENV XK6_BUILDER_VERSION="(?<currentValue>.*)"',
       ],
       depNameTemplate: 'grafana/xk6',
       datasourceTemplate: 'github-releases',
-      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$'
-    }
+      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?(?<prerelease>-[0-9A-Za-z-\\.]+)?$',
+    },
   ],
-//  customManagers: [
-//    {
-//      customType: 'regex',
-//      fileMatch: ["Dockerfile$"],
-//      "matchStrings": [
-//        // For dockerfile: https://regex101.com/r/iJfnnL/1
-//        "datasource=(?<datasource>github-releases) depName=(?<depName>[\\w\\d\\//\\-\\_]+)\\nENV .+_VERSION[\\s*|=]??\\\"?(?<currentValue>[\\w\\d\\/\\-\\.\\_]+)\\\"?\\s*",
-//      ],
-//      // datasourceTemplate: "{{datasource}}", // should not be required as we extract datasource
-//      versioningTemplate: "regex:(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$",
-//      extractVersionTemplate: "^v?(?<version>.*)$"
-//    }
-//  ]
 }
