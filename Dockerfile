@@ -1,5 +1,5 @@
 # Build the k6 binary with the extension
-FROM golang:1.26.5@sha256:eb37f58646a901dc7727cf448cae36daaefaba79de33b5058dab79aa4c04aefb as builder
+FROM golang:1.26.5@sha256:3aff6657219a4d9c14e27fb1d8976c49c29fddb70ba835014f477e1c70636647 as builder
 
 ENV GRAFANA_K6_VERSION="0.56.0"
 ENV XK6_MONGO_VERSION="1.2.0"
